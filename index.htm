@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Credit</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style: none;
+            font-family: Arial, Helvetica, sans-serif;
+            a{color: #000;}
+        }
+        #container{
+            width: 80%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 60px;
+        }
+        .but{
+            /* border: 1px solid black; */
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            cursor: pointer;
+            transition: .8s;
+            img{
+                width: 42px;
+                height: 36px;
+            }
+            &:first-child{
+                border-radius: 15px 0 0 15px;
+            }
+            &:nth-child(2){
+                border-radius: 0 15px 15px 0;
+            }
+        }
+        #ust{
+            display: flex;
+
+        }
+        #alt,#alt2{
+            width: 100%;
+            #mar{
+                margin: 60px 0;
+            }
+        }
+        /* #yeni{margin: 60px 0;} */
+        #umumi{
+            display: flex;
+            gap: 40px;
+            width: 100%;
+        }
+        
+        .verx{
+            display: flex;
+            flex-direction: column;
+            span{color: #818181;}
+            position: relative;
+        }
+        .verx input{
+            position: absolute;
+            bottom: 38px;
+            height: 3px;
+            width: 85%; 
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        /* .verx input[type="range"]{
+            -webkit-appearance: none; 
+            width: 85%; 
+            left: 50%;
+            transform: translateX(-50%);
+            height: 3px;
+            background: #fff; 
+            position: absolute;
+            bottom: 38px;
+        }
+        .verx input[type="range"]::-webkit-slider-runnable-track {
+            background: #6f0bbb; 
+            height: 3px;
+        }
+        .verx input[type="range"]::-webkit-slider-thumb{
+            -webkit-appearance: none;
+            width: 15px; 
+            height: 15px; 
+            border-radius: 50%; 
+            background: #6f0bbb; 
+            cursor: pointer;
+            position: relative;
+            top: -6px;
+        }  */
+        
+        .teyin{
+            
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            border: 1px solid #cba7e6;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+        .third{
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+        #sol{
+            background-color: #f3f3f3;
+            padding: 45px 35px;
+            border-radius: 15px;
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+        }
+        #sag{
+            width: 40%;
+            border: 1px solid #000;
+            border-radius: 15px;
+            padding: 45px 25px 40px 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            button{
+                color: #fff;
+                font-weight: bold;
+                /* background-color: #6f0bbb; */
+                background-color: #8f8f8f61;
+                border-radius: 10px;
+                border: none;
+                padding: 15px;
+                /* cursor: pointer; */
+                cursor: not-allowed;
+            }
+
+        }
+        #flex{
+            display: flex;
+            gap: 20px;
+        }
+        .ikili{
+            display: flex;
+            flex-direction: column;
+            
+            span{color: #8f8f8f;}
+        }
+        #ikinci{
+            color: #fff;
+            font-weight: bold;
+            background-color: #6f0bbb;
+            border-radius: 10px;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            width: 150px;
+        }
+        #tek{
+            width: 100%;
+            background-color: #f3f3f3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 45px 35px;
+            border-radius: 15px;
+            gap: 40px;
+        }
+        #tepede{
+            width: 100%;
+            display: flex;
+            gap: 30px;
+        }
+        #div2{
+            border: 1px solid #781abf;
+            border-radius: 10px;
+            padding: 40px;
+            width: 33.33%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            span{color: #781abf;}
+        }
+        .div1{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 33.33%;
+            gap: 10px;
+            
+        }
+        .arrow img{
+                height: 10px;
+                width: 10px;
+                transition: all 0.3s ease;
+        }
+        .arrow,.div1 input{
+            height: 58px;
+            background-color: #fff;
+            border: 1px solid #dbdbdb;
+            border-radius: 10px;
+        }
+        .div1 input{outline: none;padding: 0 10px;}
+        .arrow{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            cursor: pointer;
+        }
+        ul{
+            border: 1px solid #dfdfdf;
+            border-radius: 5px;
+            background-color: #fff;
+            width: 100%;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 10;
+            display: none;
+        }
+        li:first-child{
+            font-weight: 600;
+        }
+        li{
+            padding: 15px 10px;
+            &:hover{
+                background-color: #f6f6f6;
+            }
+        }
+        .disp{display: block;}
+        .rotate{transform: rotate(180deg);}
+        @media only screen and (max-width: 870px){
+            #ust{
+                flex-direction: column;
+            }
+            .but{
+                &:first-child{border-radius:  15px;}
+                &:nth-child(2){border-radius:  15px;}
+            }
+            #mar{text-align: center;}
+            #container{width: 99%;padding: 10px;}
+            #tek{padding: 10px;}
+            #div2{padding: 10px;}
+        }
+        @media only screen and (max-width: 400px){
+            #tepede{flex-direction: column;align-items: center;}
+            .div1,#div2{width: 100%;}
+        }
+        @media only screen and (max-width: 600px){
+            #umumi{flex-direction: column;align-items: center;}
+            #sol,#sag{width: 100%;}
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="ust">
+            <div onclick="change(true)" class="but"><img src="img/money-bills-simple.svg" /><span>nağd krediti hesabla</span></div>
+            <div onclick="change(false)" class="but"><img src="img/cash-register.svg" /><span>əmanət üzrə gəliri hesabla</span></div>
+        </div>
+        <div id="alt">
+            <h1 id="mar">nağd krediti hesabla</h1>
+            <div id="umumi">
+                <div id="sol">
+                    <div class="verx">
+                        <div  class="teyin">
+                            <span>hansı məbləğ arzunuzu reallaşdırar?</span>
+                            <h3>242 AZN</h3>
+                        </div>
+                        <input id="range1" oninput="yaz1()" min="300" max="40000" type="range" />
+                        <div class="third">
+                            <span>300</span>
+                            <span>4800</span>
+                        </div>
+                    </div>
+
+                    <div class="verx">
+                        <div  class="teyin">
+                            <span>müddəti seçin</span>
+                            <h3>242 ay</h3>
+                        </div>
+                        <input oninput="yaz2()" id="range2" min="3" max="48" type="range" />
+                        <div class="third">
+                            <span>3 ay</span>
+                            <span>48 ay</span>
+                        </div>
+                    </div>
+                    <div id="niz">
+                        <input onclick="al()" id="check" type="checkbox" />
+                        <span>"sifariş' düyməsini basaraq <a href="#">müraciət qaydaları</a> ilə razılaşmış olursunuz</span>
+                    </div>
+                </div>
+
+                <div id="sag">
+                    <h2>bizim <br /> təklif</h2>
+                    <div id="flex">
+                        <div class="ikili">
+                            <span>faiz dərəcəsi</span>
+                            <h1 id="faiz">11%</h1>
+                        </div>
+                        <div class="ikili">
+                            <span>aylıq ödəniş</span>
+                            <h1 id="ayliq">442 ₼</h1>
+                        </div>
+                    </div>
+                    <button id="sif">sifariş</button>
+                </div>
+            </div>
+        </div>
+        <div id="alt2">
+            <h1 id="mar">əmanət üzrə gəliri hesablayın</h1>
+            <div id="tek">
+                <div id="tepede">
+                    <div class="div1">
+                        <div onclick="ac(0)" class="arrow">
+                            
+                                <span>valyuta</span>
+                                <img src="img/angle-down.svg" />
+                            
+                            <ul>
+                                <li>valyuta</li>
+                                <li>müddətin sonunda</li>
+                                <li>aylıq ödəniş</li>
+                            </ul>
+                        </div>
+                        <div onclick="ac(1)" class="arrow">
+                            
+                                <span>muddet</span>
+                                <img src="img/angle-down.svg" />
+                            
+                            <ul>
+                                <li>müddət</li>
+                                <li>12</li>
+                                <li>24</li>
+                                <li>36</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="div1">
+                        <div onclick="ac(2)" class="arrow">
+                            
+                                <span>faizlərin odənilməsi</span>
+                                <img src="img/angle-down.svg" />
+                            
+                            <ul>
+                                <li>faizlərin odənilməsi</li>
+                                <li>müddətin sonunda</li>
+                                <li>aylıq ödəniş</li>
+                            </ul>
+                        </div>
+                        <input type="text" placeholder="mebleg(min. 1000AZN/USD)*"/>
+                    </div>
+                    <div id="div2">
+                        <span>faizler - müddetin sonunda</span>
+                        <span>8.5% - 0.00 AZN</span>
+                    </div>
+                </div>
+                <button id="ikinci">sifariş</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const buts=document.getElementsByClassName('but');
+        const icons=document.querySelectorAll('div img');
+        const alt=document.getElementById('alt');
+        const alt2=document.getElementById('alt2');
+        const spans=document.querySelectorAll('span');
+        const h3=document.querySelectorAll('h3');
+        const faiz=document.getElementById('faiz');
+        const range1=document.getElementById('range1');
+        const range2=document.getElementById('range2');
+        const ayliq=document.getElementById('ayliq');
+        const check=document.getElementById('check');
+        const sif=document.getElementById('sif');
+
+        function change(status){
+            status ? ((buts[0].style.background="#6f0bbb"), (buts[0].style.color="#fff"),(icons[0].style.filter="brightness(0) invert(1)")):
+                    ((buts[0].style.background="#f3f3f3"), (buts[0].style.color="#000"),(icons[0].style.filter="brightness(1) invert(0)")) ;
+            !status ? ((buts[1].style.background="#6f0bbb"), (buts[1].style.color="#fff"),(icons[1].style.filter="brightness(0) invert(1)")):
+                    ((buts[1].style.background="#f3f3f3"), (buts[1].style.color="#000"),(icons[1].style.filter="brightness(1) invert(0)")) ;
+
+            status ? (alt.style.display="block",alt2.style.display="none"):
+                    (alt.style.display="none",alt2.style.display="block");
+             
+        }
+        change(1);
+        
+        let derece;
+        function yaz2(){
+            h3[1].innerHTML=document.getElementById('range2').value+' ay';
+            if(range2.value<=12) derece=11;
+            else if(range2.value<=24) derece=14.5;
+            else if(range2.value<=36) derece=15.5;
+            else if(range2.value<=48) derece=16.5;
+            faiz.innerHTML=derece+' %';
+            ayliq.innerHTML=Math.floor((+range1.value*derece*0.01)+(+range1.value/(+range2.value)));
+        }
+        function yaz1(){
+            h3[0].innerHTML=document.getElementById('range1').value+' AZN';
+            ayliq.innerHTML=Math.floor((+range1.value*0.11)+(+range1.value/(+range2.value)));
+        }
+        
+        function al(){
+            check.checked ? (sif.style.background="#6f0bbb",sif.style.cursor="pointer")
+            :(sif.style.background="#8f8f8f61",sif.style.cursor="not-allowed");
+        }
+
+        const uls=document.querySelectorAll('ul');
+        const arrows=document.querySelectorAll('.arrow');
+        for(let i=0;i<uls.length;i++){
+            arrows[i].style.position="relative";
+            uls[i].style.position="absolute";
+            uls[i].style.top="calc(100% + 3px)";
+            uls[i].style.left="0";
+        }
+        const imgs=document.querySelectorAll('.arrow img');
+        function ac(i){
+            uls[i].classList.toggle('disp');
+            imgs[i].classList.toggle('rotate');
+        }
+    </script>
+</body>
+
+</html>
